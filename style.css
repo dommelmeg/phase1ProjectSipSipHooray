@@ -15,7 +15,8 @@ body {
   background: #ffffff;
   height: 64px;
   width: 100%;
-  align-content: space-between;
+  position: fixed;
+  justify-content: space-evenly;
 }
 
 #sshHeader #logo {
@@ -41,12 +42,12 @@ body {
   width: 140px;
   border-radius: 5px;
   font-size: 18px;
+  margin-left: 200px;
 }
 
 #title {
   position: fixed;
   width: 100vw;
-  height: 224px;
   top: 133px;
   text-align: center;
 }
@@ -65,4 +66,10 @@ p {
 #title #shakeItUp {
   width: 240px;
   height: 60px;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
 }
+
+
