@@ -1,0 +1,68 @@
+body {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: #ececec;
+  margin: 0px !important;
+}
+
+#container {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+#sshHeader {
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  height: 64px;
+  width: 100%;
+  align-content: space-between;
+}
+
+#sshHeader #logo {
+  justify-content: left;
+}
+
+#sshHeader .headerBtn {
+  width: 132px;
+  height: 22px;
+  margin-top: 21px;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  align-items: center;
+}
+
+#sshHeader #favoriteBtn {
+  margin-top: 12px;
+  justify-content: right;
+  border-color: black;
+  background-color: white;
+  height: 40px;
+  width: 140px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+#title {
+  position: fixed;
+  width: 100vw;
+  height: 224px;
+  top: 133px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+p {
+  font-size: 18px;
+  text-align: center;
+  justify-content: center;
+  line-height: 25.31px;
+}
+
+#title #shakeItUp {
+  width: 240px;
+  height: 60px;
+}
