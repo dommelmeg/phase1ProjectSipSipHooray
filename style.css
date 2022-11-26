@@ -48,7 +48,7 @@ body {
 #title {
   position: fixed;
   width: 100vw;
-  top: 133px;
+  top: 100px;
   text-align: center;
 }
 
@@ -56,7 +56,7 @@ h1 {
   font-size: 48px;
 }
 
-p {
+#title p {
   font-size: 18px;
   text-align: center;
   justify-content: center;
@@ -72,4 +72,51 @@ p {
   font-size: 18px;
 }
 
+.cardHolder {
+  /* justify-content: center; */
+  position: relative;
+  width: 100vw;
+  height: 436px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.card {
+  background-color: white;
+  text-align: left;
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  color: #808080;
+}
+
+.drinkImage {
+  justify-self: center;
+  height: 24rem;
+  width: auto;
+}
+
+.yesPleaseBtn {
+  border-color: black;
+  background-color: white;
+  height: 40px;
+  width: 140px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 17px;
+}
