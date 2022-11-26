@@ -37,8 +37,16 @@ const getAlcoholicDrinks = () => {
     .then((drinks) => renderDrinks(drinks))
 }
 
+const getNonAlcoholicDrinks = () => {
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
+    .then((res) => res.json())
+    .then(drinks => renderDrinks(drinks))
+}
+
 const alcoholicText = document.getElementById('alcoholic')
+const nonAlcoholicText = document.getElementById('nonAlcoholic')
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
+nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 
 //Add event listener that fills in heart when favorited
 
