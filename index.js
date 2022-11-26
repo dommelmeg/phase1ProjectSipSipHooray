@@ -1,3 +1,4 @@
+
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then((res) => res.json())
@@ -25,28 +26,23 @@ const renderOneDrink = (randomDrink) => {
   // console.log(randomDrink)
 }
 
+//Alcoholic Section – able to filter by alcohol
+const renderDrinks = (listOfDrinks) => {
+  console.log(listOfDrinks)
+}
+
 const getAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
     .then((res) => res.json())
-    .then((drink) => renderDrinks(drink))
+    .then((drinks) => renderDrinks(drinks))
 }
 
-getAlcoholicDrinks()
-
-
-const renderDrinks = (listOfDrinks) => {
-  const alcoholicText = document.getElementById('alcoholic')
-  console.log(alcoholicText)
-}
-
-renderDrinks()
+const alcoholicText = document.getElementById('alcoholic')
+alcoholicText.addEventListener('click', getAlcoholicDrinks)
 
 //Add event listener that fills in heart when favorited
 
 getRandomCocktail()
-
-//Alcoholic Section
-  //Able to filter by alcohol
 
 //Non-alcoholic section
   //Able to filter by ingredient
