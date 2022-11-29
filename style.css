@@ -1,12 +1,14 @@
 body {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: #ececec;
+  /* background-color: #ececec; */
   margin: 0px !important;
+  padding: 0px !important;
 }
 
 #container {
   min-height: 100vh;
   min-width: 100vw;
+  background-color: #ececec;
 }
 
 #sshHeader {
@@ -15,7 +17,7 @@ body {
   background: #ffffff;
   height: 64px;
   width: 100%;
-  position: fixed;
+  position: relative;
   justify-content: space-evenly;
 }
 
@@ -25,12 +27,12 @@ body {
 
 #sshHeader .headerBtn {
   width: 132px;
-  height: 22px;
-  margin-top: 21px;
+  height: 100%;
+  /* margin-top: 21px; */
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 #sshHeader #favoriteBtn {
@@ -46,7 +48,7 @@ body {
 }
 
 #title {
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
   top: 100px;
   text-align: center;
@@ -73,26 +75,27 @@ h1 {
 }
 
 .cardHolder {
-  /* justify-content: center; */
-  position: relative;
+  /* position: relative;
   width: 100vw;
   height: 436px;
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  display: inline-grid;
+
 }
 
 .card {
   background-color: white;
   text-align: left;
-  position: absolute;
-  width: auto;
+  width: 388px;
   height: auto;
   top: 20px;
   border: 1px solid #000000;
   border-radius: 5px;
   padding: 24px;
+  display: inline-grid;
 }
 
 h2 {
@@ -119,4 +122,15 @@ h3 {
   font-size: 18px;
   text-align: center;
   margin-top: 17px;
+}
+
+.buttonSelected {
+  background-color: #F2F2F2
+}
+
+.multiCardHolder {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
 }
