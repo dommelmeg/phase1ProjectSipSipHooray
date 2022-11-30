@@ -1,10 +1,12 @@
-const mainBody = document.getElementById('title')
+// const mainBody = document.getElementById('title')
 const cocktailCardDiv = document.getElementById('cocktailCardDiv')
 const headerBtns = document.getElementsByClassName('headerBtn')
 const sshLogo = document.getElementById('logo')
 const multiCardHolderDiv = document.getElementById('multiCardHolder')
 const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
+const searchBar = document.getElementsByTagName('input')
+console.log(searchBar)
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -12,9 +14,7 @@ const getRandomCocktail = () => {
     .then((drink) => renderOneDrink(drink))
 }
 
-//Need to add title text via JS (not hard coded)
 const renderOneDrink = (randomDrink) => {
-  //*bonus* add event listener on 'shake it up' button – won't autogenerate when opening page
   const randomDrinkArray = randomDrink.drinks
   const { strAlcoholic, strDrink, strGlass, strDrinkThumb } = randomDrinkArray[0]
   let card = document.createElement('div')
@@ -29,13 +29,10 @@ const renderOneDrink = (randomDrink) => {
   <h2>${strDrink}</h2>
   <h3>${strAlcoholic} | ${strGlass}
   <br>
-  <button class=yesPleaseBtn>Yes, please!`
+  <button class=yesPleaseBtn>Yes, please! &#x2661;`
   cocktailCardDiv.appendChild(card)
 }
 
-//Add click event to logo
-
-//Alcoholic Section
 const renderAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
@@ -55,13 +52,9 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
     />
     <h2>${strDrink}</h2>
     <br>
-    <button class=yesPleaseBtn>Yes, please!`
+    <button class=yesPleaseBtn id=${idDrink}>Yes, please! &#x2661;`
     cocktailCardDiv.appendChild(card)
   })
-}
-
-const renderManyDrinks = (listOfDrinks) => {
-  
 }
 
 const getAlcoholicDrinks = () => {
@@ -79,12 +72,8 @@ const getNonAlcoholicDrinks = () => {
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 
-//Add event listener that fills in heart when favorited
-
 getRandomCocktail()
 
-//Non-alcoholic section
-//Able to filter by ingredient
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
@@ -104,18 +93,12 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     />
     <h2>${strDrink}</h2>
     <br>
-    <button class=yesPleaseBtn>Yes, please!`
+    <button class=yesPleaseBtn id=${idDrink}>Yes, please! &#x2661;`
     cocktailCardDiv.appendChild(card)
   })
 }
 
-//Favorites List
-//Add event listener to 'Yes, please' btn
-//Adds cocktail info + instructions to favorites list (adds to a new array)
-//Add button w/ event listener that deletes cocktail from favorites (deletes from new array)
+//Search Feature
+const renderSearch = () => {
 
-
-sshLogo.addEventListener('click', function(){
-  console.log('hi')
-  getRandomCocktail()
-})
+}
