@@ -30,7 +30,7 @@ const renderOneDrink = (randomDrink) => {
   <h3>${strAlcoholic} | ${strGlass}
   <br>
   <button class=yesPleaseBtn>Yes, please!`
-  document.getElementById('cocktailCardDiv').appendChild(card)
+  cocktailCardDiv.appendChild(card)
 }
 
 //Add click event to logo
@@ -56,7 +56,7 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
     <h2>${strDrink}</h2>
     <br>
     <button class=yesPleaseBtn>Yes, please!`
-    document.getElementById('cocktailCardDiv').appendChild(card)
+    cocktailCardDiv.appendChild(card)
   })
 }
 
@@ -105,12 +105,9 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     <h2>${strDrink}</h2>
     <br>
     <button class=yesPleaseBtn>Yes, please!`
-    document.getElementById('cocktailCardDiv').appendChild(card)
+    cocktailCardDiv.appendChild(card)
   })
 }
-
-//Search section
-//Search based on a keyword
 
 //Favorites List
 //Add event listener to 'Yes, please' btn

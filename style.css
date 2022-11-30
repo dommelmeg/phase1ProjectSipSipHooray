@@ -28,9 +28,20 @@ body {
 #sshHeader .headerBtn {
   width: 132px;
   height: 100%;
+  line-height: 58px;
   font-size: 18px;
   text-align: center;
   border: none;
+  justify-content: center;
+}
+
+#sshHeader input[type=text] {
+  background-color: #ececec;
+  border: lightgray;
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 10px;
+  justify-content: right;
 }
 
 #sshHeader #searchBtn {
@@ -42,7 +53,6 @@ body {
   width: 140px;
   border-radius: 5px;
   font-size: 18px;
-  margin-left: 20px;
 }
 
 #title {
