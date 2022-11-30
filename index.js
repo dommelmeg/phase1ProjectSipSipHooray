@@ -3,6 +3,8 @@ const cocktailCardDiv = document.getElementById('cocktailCardDiv')
 const headerBtns = document.getElementsByClassName('headerBtn')
 const sshLogo = document.getElementById('logo')
 const multiCardHolderDiv = document.getElementById('multiCardHolder')
+const alcoholicText = document.getElementById('alcoholic')
+const nonAlcoholicText = document.getElementById('nonAlcoholic')
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -74,8 +76,6 @@ const getNonAlcoholicDrinks = () => {
   .then(drinks => renderNonAlcoholicDrinks(drinks))
 }
 
-const alcoholicText = document.getElementById('alcoholic')
-const nonAlcoholicText = document.getElementById('nonAlcoholic')
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 

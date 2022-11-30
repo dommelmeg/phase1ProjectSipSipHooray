@@ -18,6 +18,7 @@ body {
   width: 100%;
   position: relative;
   justify-content: space-evenly;
+  vertical-align: middle;
 }
 
 #sshHeader #logo {
@@ -27,14 +28,12 @@ body {
 #sshHeader .headerBtn {
   width: 132px;
   height: 100%;
-  /* margin-top: 21px; */
   font-size: 18px;
-  line-height: 21px;
   text-align: center;
-  align-items: center;
+  border: none;
 }
 
-#sshHeader #favoriteBtn {
+#sshHeader #searchBtn {
   margin-top: 12px;
   justify-content: right;
   border-color: black;
@@ -43,7 +42,7 @@ body {
   width: 140px;
   border-radius: 5px;
   font-size: 18px;
-  margin-left: 200px;
+  margin-left: 20px;
 }
 
 #title {
@@ -73,15 +72,7 @@ h1 {
 }
 
 .cardHolder {
-  /* position: relative;
-  width: 100vw;
-  height: 436px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center; */
   display: inline-grid;
-
 }
 
 .card {
