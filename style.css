@@ -1,6 +1,5 @@
 body {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  /* background-color: #ececec; */
   margin: 0px !important;
   padding: 0px !important;
 }
@@ -32,7 +31,7 @@ body {
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  /* align-items: center; */
+  align-items: center;
 }
 
 #sshHeader #favoriteBtn {
@@ -48,7 +47,6 @@ body {
 }
 
 #title {
-  /* position: fixed; */
   width: 100vw;
   top: 100px;
   text-align: center;
@@ -133,4 +131,5 @@ h3 {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   justify-items: center;
+  row-gap: 43px;
 }
