@@ -10,6 +10,7 @@ const header = document.querySelector('div#title h1')
 const subHead = document.querySelector('div#title p')
 const titleDiv = document.getElementById('title')
 const selector = document.getElementById('categories')
+const dropdown = document.getElementById('selector')
 
 const getDropDownItems = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
@@ -58,7 +59,7 @@ const renderOneDrink = (randomDrink) => {
   // cocktailCardDiv.parentNode.insertBefore(shakeItUpBtn, cocktailCardDiv)
 
   // shakeItUpBtn.addEventListener('click', getRandomCocktail)
-
+  dropdown.innerHTML = null
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
   nonAlcoholicText.style.textDecoration = 'none';
@@ -100,6 +101,8 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   alcoholicText.style.textDecoration = 'underline';
   alcoholicText.style.fontWeight = 'bold';
 
+  dropdown.innerHTML = null
+
   header.textContent = 'Knock knock, its cocktail o clock!'
   subHead.textContent = null
 
@@ -136,7 +139,9 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
   nonAlcoholicText.style.textDecoration = "underline";
   nonAlcoholicText.style.fontWeight = "bold";
 
-  header.textContent = 'Its gunna be a mocktail for me.'
+  dropdown.innerHTML = null
+
+  header.textContent = 'Gunna be a mocktail for me.'
   subHead.textContent = null
   
   const allDrinksArray = listOfDrinks.drinks
