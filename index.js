@@ -36,8 +36,10 @@ const renderOneDrink = (randomDrink) => {
 const renderAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
-  nonAlcoholicText.style.backgroundColor = 'white'
-  alcoholicText.style.backgroundColor = '#F2F2F2'
+  nonAlcoholicText.style.textDecoration = 'none';
+  nonAlcoholicText.style.fontWeight = 'normal';
+  alcoholicText.style.textDecoration = 'underline';
+  alcoholicText.style.fontWeight = 'bold';
 
   const allDrinksArray = listOfDrinks.drinks
   allDrinksArray.forEach(drink => {
@@ -77,8 +79,10 @@ getRandomCocktail()
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
-  alcoholicText.style.backgroundColor = 'white'
-  nonAlcoholicText.style.backgroundColor = '#F2F2F2'
+  alcoholicText.style.textDecoration = "none";
+  alcoholicText.style.fontWeight = "normal";
+  nonAlcoholicText.style.textDecoration = "underline";
+  nonAlcoholicText.style.fontWeight = "bold";
 
   const allDrinksArray = listOfDrinks.drinks
   allDrinksArray.forEach(drink => {
@@ -96,9 +100,4 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     <button class=yesPleaseBtn id=${idDrink}>Yes, please! &#x2661;`
     cocktailCardDiv.appendChild(card)
   })
-}
-
-//Search Feature
-const renderSearch = () => {
-
 }
