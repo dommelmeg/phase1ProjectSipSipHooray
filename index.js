@@ -17,10 +17,27 @@ const getRandomCocktail = () => {
     .then((drink) => renderOneDrink(drink))
 }
 
+const getAlcoholicDrinks = () => {
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
+  .then((res) => res.json())
+  .then((drinks) => renderAlcoholicDrinks(drinks))
+}
+
+const getNonAlcoholicDrinks = () => {
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
+  .then((res) => res.json())
+  .then(drinks => renderNonAlcoholicDrinks(drinks))
+}
+
 const renderOneDrink = (randomDrink) => {
-  header.textContent = 'In Need of Liquid Therapy?'
-  subHead.textContent = 'Feeling adventurous? We will randomly select a cocktail for you. And lets be honest, it will probably be your new favorite.'
-  console.log(titleDiv)
+  header.textContent = 'Feeling Adventurous?'
+  subHead.textContent = 'We\'ll randomly select a cocktail for you. And let\'s be honest, it will probably be your new favorite.'
+  // const shakeItUpBtn = document.createElement('button')
+  // shakeItUpBtn.id = 'shakeItUp'
+  // shakeItUpBtn.textContent = 'Shake It Up!'
+  // cocktailCardDiv.parentNode.insertBefore(shakeItUpBtn, cocktailCardDiv)
+
+  // shakeItUpBtn.addEventListener('click', getRandomCocktail)
 
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
@@ -35,7 +52,6 @@ const renderOneDrink = (randomDrink) => {
   const { strAlcoholic, strDrink, strGlass, strDrinkThumb } = randomDrinkArray[0]
   let card = document.createElement('div')
   card.className = 'card'
-  //Add empty heart to button
   card.innerHTML = `
   <img src="${strDrinkThumb}"
     class='drinkImage'
@@ -64,6 +80,9 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   alcoholicText.style.textDecoration = 'underline';
   alcoholicText.style.fontWeight = 'bold';
 
+  header.textContent = 'Knock knock, its cocktail o clock!'
+  subHead.textContent = null
+
   const allDrinksArray = listOfDrinks.drinks
   allDrinksArray.forEach(drink => {
     const { strDrink, strDrinkThumb, idDrink } = drink
@@ -87,22 +106,6 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   })
 }
 
-const getAlcoholicDrinks = () => {
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-  .then((res) => res.json())
-  .then((drinks) => renderAlcoholicDrinks(drinks))
-}
-
-const getNonAlcoholicDrinks = () => {
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
-  .then((res) => res.json())
-  .then(drinks => renderNonAlcoholicDrinks(drinks))
-}
-
-alcoholicText.addEventListener('click', getAlcoholicDrinks)
-nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
-feelingAdventurousText.addEventListener('click', getRandomCocktail)
-
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
@@ -113,6 +116,9 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
   nonAlcoholicText.style.textDecoration = "underline";
   nonAlcoholicText.style.fontWeight = "bold";
 
+  header.textContent = 'Its gunna be a mocktail for me.'
+  subHead.textContent = null
+  
   const allDrinksArray = listOfDrinks.drinks
   allDrinksArray.forEach(drink => {
     const { strDrink, strDrinkThumb, idDrink } = drink
@@ -128,10 +134,14 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     <br>
     <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
-
+    
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
       individualBtn.innerHTML = 'Love it! &#x2665;'
     })
   })
 }
+
+alcoholicText.addEventListener('click', getAlcoholicDrinks)
+nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
+feelingAdventurousText.addEventListener('click', getRandomCocktail)
