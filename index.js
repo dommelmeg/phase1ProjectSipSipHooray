@@ -6,6 +6,10 @@ const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
 const feelingAdventurousText = document.getElementById('feelingAdventurous')
 const loveItBtn = document.getElementById('loveItBtn')
+const header = document.querySelector('div#title h1')
+const subHead = document.querySelector('div#title p')
+const titleDiv = document.getElementById('title')
+
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -14,6 +18,10 @@ const getRandomCocktail = () => {
 }
 
 const renderOneDrink = (randomDrink) => {
+  header.textContent = 'In Need of Liquid Therapy?'
+  subHead.textContent = 'Feeling adventurous? We will randomly select a cocktail for you. And lets be honest, it will probably be your new favorite.'
+  console.log(titleDiv)
+
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
   nonAlcoholicText.style.textDecoration = 'none';
@@ -41,7 +49,6 @@ const renderOneDrink = (randomDrink) => {
   cocktailCardDiv.appendChild(card)
 
   const individualBtn = document.getElementsByClassName('loveItBtn')[0]
-  console.log(individualBtn)
     individualBtn.addEventListener('click', function(){
       individualBtn.innerHTML = 'Love it! &#x2665;'
   })
@@ -75,7 +82,6 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
 
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
-      console.log(`${strDrink}`)
       individualBtn.innerHTML = 'Love it! &#x2665'
     })
   })
@@ -125,7 +131,6 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
 
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
-      console.log(`${strDrink}`)
       individualBtn.innerHTML = 'Love it! &#x2665;'
     })
   })
