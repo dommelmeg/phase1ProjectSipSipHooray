@@ -5,6 +5,7 @@ const multiCardHolderDiv = document.getElementById('multiCardHolder')
 const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
 const feelingAdventurousText = document.getElementById('feelingAdventurous')
+const loveItBtn = document.getElementById('loveItBtn')
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -14,6 +15,14 @@ const getRandomCocktail = () => {
 
 const renderOneDrink = (randomDrink) => {
   cocktailCardDiv.innerHTML = null
+  cocktailCardDiv.className = 'cocktailCardDiv'
+  nonAlcoholicText.style.textDecoration = 'none';
+  nonAlcoholicText.style.fontWeight = 'normal';
+  alcoholicText.style.textDecoration = 'none';
+  alcoholicText.style.fontWeight = 'normal';
+  feelingAdventurousText.style.textDecoration = 'underline';
+  feelingAdventurousText.style.fontWeight = 'bold';
+
   const randomDrinkArray = randomDrink.drinks
   const { strAlcoholic, strDrink, strGlass, strDrinkThumb } = randomDrinkArray[0]
   let card = document.createElement('div')
@@ -28,8 +37,14 @@ const renderOneDrink = (randomDrink) => {
   <h2>${strDrink}</h2>
   <h3>${strAlcoholic} | ${strGlass}
   <br>
-  <button class=yesPleaseBtn>Yes, please! &#x2661;`
+  <button class=loveItBtn>Love it! &#x2661;`
   cocktailCardDiv.appendChild(card)
+
+  const individualBtn = document.getElementsByClassName('loveItBtn')[0]
+  console.log(individualBtn)
+    individualBtn.addEventListener('click', function(){
+      individualBtn.innerHTML = 'Love it! &#x2665;'
+  })
 }
 
 const renderAlcoholicDrinks = (listOfDrinks) => {
@@ -37,6 +52,8 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.className = 'multiCardHolder'
   nonAlcoholicText.style.textDecoration = 'none';
   nonAlcoholicText.style.fontWeight = 'normal';
+  feelingAdventurousText.style.textDecoration = "none";
+  feelingAdventurousText.style.fontWeight = "normal";
   alcoholicText.style.textDecoration = 'underline';
   alcoholicText.style.fontWeight = 'bold';
 
@@ -53,8 +70,14 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
     />
     <h2>${strDrink}</h2>
     <br>
-    <button class=yesPleaseBtn id=${idDrink}>Yes, please! &#x2661;`
+    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
+
+    const individualBtn = document.getElementById(`${idDrink}`)
+    individualBtn.addEventListener('click', function(){
+      console.log(`${strDrink}`)
+      individualBtn.innerHTML = 'Love it! &#x2665'
+    })
   })
 }
 
@@ -79,6 +102,8 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.className = 'multiCardHolder'
   alcoholicText.style.textDecoration = "none";
   alcoholicText.style.fontWeight = "normal";
+  feelingAdventurousText.style.textDecoration = "none";
+  feelingAdventurousText.style.fontWeight = "normal";
   nonAlcoholicText.style.textDecoration = "underline";
   nonAlcoholicText.style.fontWeight = "bold";
 
@@ -95,7 +120,13 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     />
     <h2>${strDrink}</h2>
     <br>
-    <button class=yesPleaseBtn id=${idDrink}>Yes, please! &#x2661;`
+    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
+
+    const individualBtn = document.getElementById(`${idDrink}`)
+    individualBtn.addEventListener('click', function(){
+      console.log(`${strDrink}`)
+      individualBtn.innerHTML = 'Love it! &#x2665;'
+    })
   })
 }
