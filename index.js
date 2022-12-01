@@ -9,12 +9,18 @@ const loveItBtn = document.getElementById('loveItBtn')
 const header = document.querySelector('div#title h1')
 const subHead = document.querySelector('div#title p')
 const titleDiv = document.getElementById('title')
+const selector = document.getElementById('categories')
 
+const getDropDownItems = () => {
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((res) => res.json())
+    .then((category) => renderSelector(category))
+}
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-    .then((res) => res.json())
-    .then((drink) => renderOneDrink(drink))
+  .then((res) => res.json())
+  .then((drink) => renderOneDrink(drink))
 }
 
 const getAlcoholicDrinks = () => {
@@ -28,6 +34,20 @@ const getNonAlcoholicDrinks = () => {
   .then((res) => res.json())
   .then(drinks => renderNonAlcoholicDrinks(drinks))
 }
+
+const renderSelector = (categories) => {
+  console.log(selector)
+  const allCategories = categories.drinks
+  allCategories.forEach(category => {
+    const { strCategory } = category
+    const option = document.createElement('option')
+    option.value = `${strCategory}`
+    option.innerHTML = `${strCategory}`
+    selector.appendChild(option)
+  })
+}
+
+getDropDownItems()
 
 const renderOneDrink = (randomDrink) => {
   header.textContent = 'Feeling Adventurous?'
