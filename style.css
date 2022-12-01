@@ -17,7 +17,7 @@ body {
   height: 64px;
   width: 100%;
   position: relative;
-  justify-content: space-evenly;
+  justify-content: left;
   vertical-align: middle;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 #sshHeader .headerBtn {
-  width: 132px;
+  width: 10rem;
   height: 100%;
   line-height: 58px;
   font-size: 18px;

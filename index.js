@@ -1,12 +1,10 @@
-// const mainBody = document.getElementById('title')
 const cocktailCardDiv = document.getElementById('cocktailCardDiv')
 const headerBtns = document.getElementsByClassName('headerBtn')
 const sshLogo = document.getElementById('logo')
 const multiCardHolderDiv = document.getElementById('multiCardHolder')
 const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
-const searchBar = document.getElementsByTagName('input')
-console.log(searchBar)
+const feelingAdventurousText = document.getElementById('feelingAdventurous')
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -15,6 +13,7 @@ const getRandomCocktail = () => {
 }
 
 const renderOneDrink = (randomDrink) => {
+  cocktailCardDiv.innerHTML = null
   const randomDrinkArray = randomDrink.drinks
   const { strAlcoholic, strDrink, strGlass, strDrinkThumb } = randomDrinkArray[0]
   let card = document.createElement('div')
@@ -73,8 +72,7 @@ const getNonAlcoholicDrinks = () => {
 
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
-
-getRandomCocktail()
+feelingAdventurousText.addEventListener('click', getRandomCocktail)
 
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
