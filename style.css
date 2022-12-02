@@ -60,6 +60,7 @@ h1 {
   color: white;
   font-size: 18px;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .cardHolder {
@@ -102,6 +103,7 @@ h3 {
   font-size: 18px;
   text-align: center;
   margin-top: 17px;
+  cursor: pointer;
 }
 
 .buttonSelected {
