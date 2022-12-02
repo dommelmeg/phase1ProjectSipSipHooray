@@ -37,9 +37,9 @@ const getNonAlcoholicDrinks = () => {
 }
 
 const getFilteredDrinks = (category) => {
-  fetch('')
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
   .then((res) => res.json())
-  .then((drinks) => renderFilteredDrinks(drinks))
+  .then((drinks) => renderMultipleDrinks(drinks))
 }
 
 const renderSelector = (categories) => {
@@ -51,10 +51,41 @@ const renderSelector = (categories) => {
     option.innerHTML = `${strCategory}`
     selector.appendChild(option)
   })
+  console.log(selector)
+  selector.addEventListener('change', (e) => {
+    const selectedCategory = e.target.value
+    getFilteredDrinks(selectedCategory)
+  })
 }
 
-
 getDropDownItems()
+
+const renderMultipleDrinks = (allDrinks) => {
+  cocktailCardDiv.innerHTML = null
+  cocktailCardDiv.className = 'multiCardHolder'
+
+  const allDrinksArray = allDrinks.drinks
+  allDrinksArray.forEach(drink => {
+    const { strDrink, strDrinkThumb, idDrink } = drink
+    let card = document.createElement('div')
+    card.className = 'card'
+    card.innerHTML = `
+    <img src="${strDrinkThumb}"
+    class='drinkImage'
+    alt="${strDrink}"
+    id='${strDrink} image'
+    />
+    <h2>${strDrink}</h2>
+    <br>
+    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
+    cocktailCardDiv.appendChild(card)
+
+    const individualBtn = document.getElementById(`${idDrink}`)
+    individualBtn.addEventListener('click', function(){
+      individualBtn.innerHTML = 'Love it! &#x2665'
+    })
+  })
+}
 
 const renderOneDrink = (randomDrink) => {
   header.textContent = 'Feeling Adventurous?'
@@ -92,7 +123,6 @@ const renderOneDrink = (randomDrink) => {
   })
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
-  console.log(btn)
   if(btn.id !== 'shakeItUp') {
     btn.id = 'shakeItUp'
     btn.textContent = 'Shake It Up!'
@@ -104,6 +134,7 @@ const renderOneDrink = (randomDrink) => {
 const renderAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
+
   nonAlcoholicText.style.textDecoration = 'none';
   nonAlcoholicText.style.fontWeight = 'normal';
   feelingAdventurousText.style.textDecoration = "none";
@@ -144,6 +175,7 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
+
   alcoholicText.style.textDecoration = "none";
   alcoholicText.style.fontWeight = "normal";
   feelingAdventurousText.style.textDecoration = "none";

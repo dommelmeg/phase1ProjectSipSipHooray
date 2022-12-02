@@ -117,3 +117,7 @@ h3 {
   justify-items: center;
   row-gap: 43px;
 }
+
+.blackAndWhiteImg {
+  filter: grayscale(100%);
+}
