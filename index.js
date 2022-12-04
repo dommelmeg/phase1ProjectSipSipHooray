@@ -77,6 +77,31 @@ const addLikeUnlikeBtn = (idDrink) => {
   //need to add unlike feature
 }
 
+const toggleTab = (selectedTab) => {
+  if (selectedTab === 'feeling adventurous') {
+    feelingAdventurousText.style.textDecoration = 'underline';
+    feelingAdventurousText.style.fontWeight = 'bold';
+    alcoholicText.style.textDecoration = 'none';
+    alcoholicText.style.fontWeight = 'normal';
+    nonAlcoholicText.style.textDecoration = 'none';
+    nonAlcoholicText.style.fontWeight = 'normal';
+  } else if (selectedTab === 'alcoholic') {
+    alcoholicText.style.textDecoration = 'underline';
+    alcoholicText.style.fontWeight = 'bold';
+    nonAlcoholicText.style.textDecoration = 'none';
+    nonAlcoholicText.style.fontWeight = 'normal';
+    feelingAdventurousText.style.textDecoration = 'none';
+    feelingAdventurousText.style.fontWeight = 'normal';
+  } else if (selectedTab === 'non alcoholic') {
+    nonAlcoholicText.style.textDecoration = 'underline';
+    nonAlcoholicText.style.fontWeight = 'bold';
+    feelingAdventurousText.style.textDecoration = 'none';
+    feelingAdventurousText.style.fontWeight = 'normal';
+    alcoholicText.style.textDecoration = 'none';
+    alcoholicText.style.fontWeight = 'normal';
+  }
+}
+
 const renderMultipleDrinks = (objectOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
@@ -85,15 +110,17 @@ const renderMultipleDrinks = (objectOfDrinks) => {
   arrayOfDrinks.forEach(drink => {
     const { strDrink, strDrinkThumb, idDrink } = drink
     let card = document.createElement('div')
-    card.classname = 'card'
-    card.innerHTML = `<img src="${strDrinkThumb}"
-    class='drinkImage'
-    alt="${strDrink}"
-    id='${strDrink} image'
-    />
-    <h2>${strDrink}</h2>
-    <br>
-    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
+    card.className = 'card'
+    card.innerHTML = `
+      <img src="${strDrinkThumb}"
+        class='drinkImage'
+        alt="${strDrink}"
+        id='${strDrink} image'
+      />
+      <h2>${strDrink}</h2>
+      <br>
+      <button class=loveItBtn id=${idDrink}>Love it! &#x2661;
+    `
     cocktailCardDiv.appendChild(card)
 
     addMouseoverEvent(card)
@@ -111,15 +138,11 @@ const renderOneDrink = (randomDrink) => {
   
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
-  nonAlcoholicText.style.textDecoration = 'none';
-  nonAlcoholicText.style.fontWeight = 'normal';
-  alcoholicText.style.textDecoration = 'none';
-  alcoholicText.style.fontWeight = 'normal';
-  feelingAdventurousText.style.textDecoration = 'underline';
-  feelingAdventurousText.style.fontWeight = 'bold';
+
+  toggleTab('feeling adventurous')
   
   const randomDrinkArray = randomDrink.drinks
-  const { strAlcoholic, strDrink, strGlass, strDrinkThumb } = randomDrinkArray[0]
+  const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink } = randomDrinkArray[0]
   let card = document.createElement('div')
   card.className = 'card'
   card.innerHTML = `
@@ -131,12 +154,12 @@ const renderOneDrink = (randomDrink) => {
   <h2>${strDrink}</h2>
   <h3>${strAlcoholic} | ${strGlass}
   <br>
-  <button class=loveItBtn>Love it! &#x2661;`
+  <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
   cocktailCardDiv.appendChild(card)
 
   addMouseoverEvent(card)
   
-  addLikeUnlikeBtn(`idDrink`)
+  addLikeUnlikeBtn(idDrink)
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
   if(btn.id !== 'shakeItUp') {
@@ -148,14 +171,9 @@ const renderOneDrink = (randomDrink) => {
 }
 
 const renderAlcoholicDrinks = (listOfDrinks) => {
-  nonAlcoholicText.style.textDecoration = 'none';
-  nonAlcoholicText.style.fontWeight = 'normal';
-  feelingAdventurousText.style.textDecoration = "none";
-  feelingAdventurousText.style.fontWeight = "normal";
-  alcoholicText.style.textDecoration = 'underline';
-  alcoholicText.style.fontWeight = 'bold';
-
   dropdown.remove()
+
+  toggleTab('alcoholic')
 
   header.textContent = 'Knock knock, its cocktail o clock!'
   subHead.textContent = null
@@ -167,12 +185,7 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
 
-  alcoholicText.style.textDecoration = "none";
-  alcoholicText.style.fontWeight = "normal";
-  feelingAdventurousText.style.textDecoration = "none";
-  feelingAdventurousText.style.fontWeight = "normal";
-  nonAlcoholicText.style.textDecoration = "underline";
-  nonAlcoholicText.style.fontWeight = "bold";
+  toggleTab('non alcoholic')
 
   dropdown.remove()
 
