@@ -27,13 +27,13 @@ const getRandomCocktail = () => {
 const getAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
   .then((res) => res.json())
-  .then((drinks) => renderAlcoholicDrinks(drinks))
+  .then((drinks) => createAlcoholicContainer(drinks))
 }
 
 const getNonAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
   .then((res) => res.json())
-  .then(drinks => renderNonAlcoholicDrinks(drinks))
+  .then(drinks => createNonAlcoholicContainer(drinks))
 }
 
 const getFilteredDrinks = (category) => {
@@ -158,7 +158,6 @@ const renderOneDrink = (randomDrink) => {
   cocktailCardDiv.appendChild(card)
 
   addMouseoverEvent(card)
-  
   addLikeUnlikeBtn(idDrink)
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
@@ -170,9 +169,8 @@ const renderOneDrink = (randomDrink) => {
   btn.addEventListener('click', getRandomCocktail)
 }
 
-const renderAlcoholicDrinks = (listOfDrinks) => {
+const createAlcoholicContainer = (listOfDrinks) => {
   dropdown.remove()
-
   toggleTab('alcoholic')
 
   header.textContent = 'Knock knock, its cocktail o clock!'
@@ -181,12 +179,11 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   renderMultipleDrinks(listOfDrinks)
 }
 
-const renderNonAlcoholicDrinks = (listOfDrinks) => {
+const createNonAlcoholicContainer = (listOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
 
   toggleTab('non alcoholic')
-
   dropdown.remove()
 
   header.textContent = 'Gunna be a mocktail for me.'
