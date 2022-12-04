@@ -43,6 +43,9 @@ const getFilteredDrinks = (category) => {
 }
 
 const renderSelector = (categories) => {
+  cocktailCardDiv.innerHTML = null
+  // shakeItUpBtn.remove()
+
   const allCategories = categories.drinks
   allCategories.forEach(category => {
     const { strCategory } = category
@@ -51,7 +54,6 @@ const renderSelector = (categories) => {
     option.innerHTML = `${strCategory}`
     selector.appendChild(option)
   })
-  console.log(selector)
   selector.addEventListener('change', (e) => {
     const selectedCategory = e.target.value
     getFilteredDrinks(selectedCategory)
@@ -80,6 +82,14 @@ const renderMultipleDrinks = (allDrinks) => {
     <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
 
+    card.addEventListener('mouseover', () => {
+      card.id = 'dropshadow'
+    })
+
+    card.addEventListener('mouseout', () => {
+      card.id = ''
+    })
+    
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
       individualBtn.innerHTML = 'Love it! &#x2665'
@@ -216,3 +226,5 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 feelingAdventurousText.addEventListener('click', getRandomCocktail)
+
+sshLogo.addEventListener('click', getDropDownItems)
