@@ -77,29 +77,28 @@ const addLikeUnlikeBtn = (idDrink) => {
   //need to add unlike feature
 }
 
+const clearTabs = () => {
+  alcoholicText.style.textDecoration = 'none'
+  alcoholicText.style.fontWeight = 'normal'
+  nonAlcoholicText.style.textDecoration = 'none'
+  nonAlcoholicText.style.fontWeight = 'normal'
+  feelingAdventurousText.style.textDecoration = 'none'
+  feelingAdventurousText.style.fontWeight = 'normal'
+}
+
 const toggleTab = (selectedTab) => {
-  if (selectedTab === 'feeling adventurous') {
-    feelingAdventurousText.style.textDecoration = 'underline';
-    feelingAdventurousText.style.fontWeight = 'bold';
-    alcoholicText.style.textDecoration = 'none';
-    alcoholicText.style.fontWeight = 'normal';
-    nonAlcoholicText.style.textDecoration = 'none';
-    nonAlcoholicText.style.fontWeight = 'normal';
-  } else if (selectedTab === 'alcoholic') {
-    alcoholicText.style.textDecoration = 'underline';
-    alcoholicText.style.fontWeight = 'bold';
-    nonAlcoholicText.style.textDecoration = 'none';
-    nonAlcoholicText.style.fontWeight = 'normal';
-    feelingAdventurousText.style.textDecoration = 'none';
-    feelingAdventurousText.style.fontWeight = 'normal';
+  clearTabs()
+  let tabSelected
+  if (selectedTab === 'alcoholic') {
+    tabSelected = alcoholicText
   } else if (selectedTab === 'non alcoholic') {
-    nonAlcoholicText.style.textDecoration = 'underline';
-    nonAlcoholicText.style.fontWeight = 'bold';
-    feelingAdventurousText.style.textDecoration = 'none';
-    feelingAdventurousText.style.fontWeight = 'normal';
-    alcoholicText.style.textDecoration = 'none';
-    alcoholicText.style.fontWeight = 'normal';
+    tabSelected = nonAlcoholicText
+  } else if (selectedTab === 'feeling adventurous') {
+    tabSelected = feelingAdventurousText
   }
+
+  tabSelected.style.textDecoration = 'underline'
+  tabSelected.style.fontWeight = 'bold'
 }
 
 const renderMultipleDrinks = (objectOfDrinks) => {
