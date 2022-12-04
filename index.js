@@ -126,6 +126,14 @@ const renderOneDrink = (randomDrink) => {
   <br>
   <button class=loveItBtn>Love it! &#x2661;`
   cocktailCardDiv.appendChild(card)
+
+  card.addEventListener('mouseover', () => {
+    card.id = 'dropshadow'
+  })
+
+  card.addEventListener('mouseout', () => {
+    card.id = ''
+  })
   
   const individualBtn = document.getElementsByClassName('loveItBtn')[0]
   individualBtn.addEventListener('click', function(){
@@ -173,6 +181,14 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
     <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
 
+    card.addEventListener('mouseover', () => {
+      card.id = 'dropshadow'
+    })
+
+    card.addEventListener('mouseout', () => {
+      card.id = ''
+    })
+
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
       individualBtn.innerHTML = 'Love it! &#x2665'
@@ -213,6 +229,14 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
     <br>
     <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
+
+    card.addEventListener('mouseover', () => {
+      card.id = 'dropshadow'
+    })
+
+    card.addEventListener('mouseout', () => {
+      card.id = ''
+    })
     
     const individualBtn = document.getElementById(`${idDrink}`)
     individualBtn.addEventListener('click', function(){
