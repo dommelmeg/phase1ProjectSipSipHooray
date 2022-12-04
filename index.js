@@ -44,8 +44,6 @@ const getFilteredDrinks = (category) => {
 
 const renderSelector = (categories) => {
   cocktailCardDiv.innerHTML = null
-  // shakeItUpBtn.remove()
-
   const allCategories = categories.drinks
   allCategories.forEach(category => {
     const { strCategory } = category
@@ -62,17 +60,33 @@ const renderSelector = (categories) => {
 
 getDropDownItems()
 
-const renderMultipleDrinks = (allDrinks) => {
+const addMouseoverEvent = (card) => {
+  card.addEventListener('mouseover', () => {
+    card.id = 'dropshadow'
+  })
+  card.addEventListener('mouseout', () => {
+    card.id = ''
+  })
+}
+
+const addLikeUnlikeBtn = (idDrink) => {
+  const individualBtn = document.getElementById(`${idDrink}`)
+    individualBtn.addEventListener('click', function(){
+      individualBtn.innerHTML = 'Love it! &#x2665'
+    })
+  //need to add unlike feature
+}
+
+const renderMultipleDrinks = (objectOfDrinks) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'multiCardHolder'
 
-  const allDrinksArray = allDrinks.drinks
-  allDrinksArray.forEach(drink => {
+  const arrayOfDrinks = objectOfDrinks.drinks
+  arrayOfDrinks.forEach(drink => {
     const { strDrink, strDrinkThumb, idDrink } = drink
     let card = document.createElement('div')
-    card.className = 'card'
-    card.innerHTML = `
-    <img src="${strDrinkThumb}"
+    card.classname = 'card'
+    card.innerHTML = `<img src="${strDrinkThumb}"
     class='drinkImage'
     alt="${strDrink}"
     id='${strDrink} image'
@@ -82,19 +96,12 @@ const renderMultipleDrinks = (allDrinks) => {
     <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
     cocktailCardDiv.appendChild(card)
 
-    card.addEventListener('mouseover', () => {
-      card.id = 'dropshadow'
-    })
-
-    card.addEventListener('mouseout', () => {
-      card.id = ''
-    })
-    
-    const individualBtn = document.getElementById(`${idDrink}`)
-    individualBtn.addEventListener('click', function(){
-      individualBtn.innerHTML = 'Love it! &#x2665'
-    })
+    addMouseoverEvent(card)
+    addLikeUnlikeBtn(idDrink)
   })
+  //add a conditional
+  const shakeItUpBtn = document.getElementById('shakeItUp')
+  shakeItUpBtn.remove()
 }
 
 const renderOneDrink = (randomDrink) => {
@@ -127,18 +134,9 @@ const renderOneDrink = (randomDrink) => {
   <button class=loveItBtn>Love it! &#x2661;`
   cocktailCardDiv.appendChild(card)
 
-  card.addEventListener('mouseover', () => {
-    card.id = 'dropshadow'
-  })
-
-  card.addEventListener('mouseout', () => {
-    card.id = ''
-  })
+  addMouseoverEvent(card)
   
-  const individualBtn = document.getElementsByClassName('loveItBtn')[0]
-  individualBtn.addEventListener('click', function(){
-    individualBtn.innerHTML = 'Love it! &#x2665;'
-  })
+  addLikeUnlikeBtn(`idDrink`)
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
   if(btn.id !== 'shakeItUp') {
@@ -150,9 +148,6 @@ const renderOneDrink = (randomDrink) => {
 }
 
 const renderAlcoholicDrinks = (listOfDrinks) => {
-  cocktailCardDiv.innerHTML = null
-  cocktailCardDiv.className = 'multiCardHolder'
-
   nonAlcoholicText.style.textDecoration = 'none';
   nonAlcoholicText.style.fontWeight = 'normal';
   feelingAdventurousText.style.textDecoration = "none";
@@ -165,37 +160,7 @@ const renderAlcoholicDrinks = (listOfDrinks) => {
   header.textContent = 'Knock knock, its cocktail o clock!'
   subHead.textContent = null
 
-  const allDrinksArray = listOfDrinks.drinks
-  allDrinksArray.forEach(drink => {
-    const { strDrink, strDrinkThumb, idDrink } = drink
-    let card = document.createElement('div')
-    card.className = 'card'
-    card.innerHTML = `
-    <img src="${strDrinkThumb}"
-    class='drinkImage'
-    alt="${strDrink}"
-    id='${strDrink} image'
-    />
-    <h2>${strDrink}</h2>
-    <br>
-    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
-    cocktailCardDiv.appendChild(card)
-
-    card.addEventListener('mouseover', () => {
-      card.id = 'dropshadow'
-    })
-
-    card.addEventListener('mouseout', () => {
-      card.id = ''
-    })
-
-    const individualBtn = document.getElementById(`${idDrink}`)
-    individualBtn.addEventListener('click', function(){
-      individualBtn.innerHTML = 'Love it! &#x2665'
-    })
-  })
-  const shakeItUpBtn = document.getElementById('shakeItUp')
-  shakeItUpBtn.remove()
+  renderMultipleDrinks(listOfDrinks)
 }
 
 const renderNonAlcoholicDrinks = (listOfDrinks) => {
@@ -214,37 +179,7 @@ const renderNonAlcoholicDrinks = (listOfDrinks) => {
   header.textContent = 'Gunna be a mocktail for me.'
   subHead.textContent = null
   
-  const allDrinksArray = listOfDrinks.drinks
-  allDrinksArray.forEach(drink => {
-    const { strDrink, strDrinkThumb, idDrink } = drink
-    let card = document.createElement('div')
-    card.className = 'card'
-    card.innerHTML = `
-    <img src="${strDrinkThumb}"
-    class='drinkImage'
-    alt="${strDrink}"
-    id='${strDrink} image'
-    />
-    <h2>${strDrink}</h2>
-    <br>
-    <button class=loveItBtn id=${idDrink}>Love it! &#x2661;`
-    cocktailCardDiv.appendChild(card)
-
-    card.addEventListener('mouseover', () => {
-      card.id = 'dropshadow'
-    })
-
-    card.addEventListener('mouseout', () => {
-      card.id = ''
-    })
-    
-    const individualBtn = document.getElementById(`${idDrink}`)
-    individualBtn.addEventListener('click', function(){
-      individualBtn.innerHTML = 'Love it! &#x2665;'
-    })
-  })
-  const shakeItUpBtn = document.getElementById('shakeItUp')
-  shakeItUpBtn.remove()
+  renderMultipleDrinks(listOfDrinks)
 }
 
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
