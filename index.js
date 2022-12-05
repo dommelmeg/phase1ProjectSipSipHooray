@@ -1,23 +1,20 @@
 const cocktailCardDiv = document.getElementById('cocktailCardDiv')
-const headerBtns = document.getElementsByClassName('headerBtn')
 const sshLogo = document.getElementById('logo')
-const multiCardHolderDiv = document.getElementById('multiCardHolder')
 const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
 const feelingAdventurousText = document.getElementById('feelingAdventurous')
 const loveItBtn = document.getElementById('loveItBtn')
 const header = document.querySelector('div#title h1')
 const subHead = document.querySelector('div#title p')
-const titleDiv = document.getElementById('title')
-const selector = document.getElementById('categories')
-const dropdown = document.getElementById('selector')
+const dropdownDiv = document.getElementById('selector')
+const dropdown = document.getElementById('categories')
 const filledHeart = '&#x2665'
 const unfilledHeart = '&#x2661'
 
 const getDropDownItems = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
     .then((res) => res.json())
-    .then((category) => renderSelector(category))
+    .then((category) => createFilterContainer(category))
 }
 
 const getRandomCocktail = () => {
@@ -53,6 +50,18 @@ const addMouseoverEvent = (card) => {
   })
 }
 
+//add conditional
+const removeShakeItUpBtn = () => {
+  const shakeItUpBtn = document.getElementById('shakeItUp')
+  shakeItUpBtn.remove()
+
+  // const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
+  // if(btn.id !== 'shakeItUp') {
+  //   btn.id = 'shakeItUp'
+  //   btn.textContent = 'Shake It Up!'
+  //   cocktailCardDiv.parentNode.insertBefore(btn, cocktailCardDiv)
+}
+
 const addLikeUnlikeBtn = (idDrink) => {
   const individualBtn = document.getElementById(`${idDrink}`)
   individualBtn.addEventListener('click', (e) => {
@@ -67,20 +76,24 @@ const addLikeUnlikeBtn = (idDrink) => {
   })
 }
 
-const renderSelector = (categories) => {
+const createFilterContainer = (categories) => {
+  header.textContent = 'Eat, Sleep, Cocktail, Repeat.'
+  subHead.textContent = 'Have a favorite type of drink? Try selecting it below to switch up the recipe!'
   cocktailCardDiv.innerHTML = null
+
   const allCategories = categories.drinks
   allCategories.forEach(category => {
     const { strCategory } = category
     const option = document.createElement('option')
     option.value = `${strCategory}`
     option.innerHTML = `${strCategory}`
-    selector.appendChild(option)
+    dropdown.appendChild(option)
   })
-  selector.addEventListener('change', (e) => {
+  dropdown.addEventListener('change', (e) => {
     const selectedCategory = e.target.value
     getFilteredDrinks(selectedCategory)
   })
+  removeShakeItUpBtn()
 }
 
 const clearTabs = () => {
@@ -130,16 +143,14 @@ const renderMultipleDrinks = (objectOfDrinks) => {
     addMouseoverEvent(card)
     addLikeUnlikeBtn(idDrink)
   })
-  //add a conditional
-  const shakeItUpBtn = document.getElementById('shakeItUp')
-  shakeItUpBtn.remove()
+  removeShakeItUpBtn()
 }
 
 const createAlcoholicContainer = (listOfDrinks) => {
   header.textContent = 'Knock knock, its cocktail o clock!'
   subHead.textContent = null
   
-  dropdown.remove()
+  dropdownDiv.remove()
   toggleTab('alcoholic')
   renderMultipleDrinks(listOfDrinks)
 }
@@ -149,7 +160,7 @@ const createNonAlcoholicContainer = (listOfDrinks) => {
   subHead.textContent = null
   
   toggleTab('non alcoholic')
-  dropdown.remove()
+  dropdownDiv.remove()
   renderMultipleDrinks(listOfDrinks)
 }
 
@@ -159,7 +170,7 @@ const createFeelingAdventurousContainer = (randomDrink) => {
 
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
-  dropdown.innerHTML = null
+  dropdownDiv.remove()
   
   toggleTab('feeling adventurous')
   
