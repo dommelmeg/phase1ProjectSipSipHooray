@@ -1,43 +1,40 @@
 const cocktailCardDiv = document.getElementById('cocktailCardDiv')
-const sshLogo = document.getElementById('logo')
 const alcoholicText = document.getElementById('alcoholic')
 const nonAlcoholicText = document.getElementById('nonAlcoholic')
 const feelingAdventurousText = document.getElementById('feelingAdventurous')
-const loveItBtn = document.getElementById('loveItBtn')
 const header = document.querySelector('div#title h1')
 const subHead = document.querySelector('div#title p')
 const filledHeart = '&#x2665'
 const unfilledHeart = '&#x2661'
-const titleDiv = document.getElementById('title')
 
 const getDropDownItems = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
-  .then((res) => res.json())
-  .then((category) => createFilterContainer(category))
+    .then((res) => res.json())
+    .then((category) => createFilterContainer(category))
 }
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-  .then((res) => res.json())
-  .then((drink) => createFeelingAdventurousContainer(drink))
+    .then((res) => res.json())
+    .then((drink) => createFeelingAdventurousContainer(drink))
 }
 
 const getAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-  .then((res) => res.json())
-  .then((drinks) => createAlcoholicContainer(drinks))
+    .then((res) => res.json())
+    .then((drinks) => createAlcoholicContainer(drinks))
 }
 
 const getNonAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
-  .then((res) => res.json())
-  .then(drinks => createNonAlcoholicContainer(drinks))
+    .then((res) => res.json())
+    .then(drinks => createNonAlcoholicContainer(drinks))
 }
 
 const getFilteredDrinks = (category) => {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
-  .then((res) => res.json())
-  .then((drinks) => renderMultipleDrinks(drinks))
+    .then((res) => res.json())
+    .then((drinks) => renderMultipleDrinks(drinks))
 }
 
 const addMouseoverEvent = (card) => {
@@ -128,6 +125,7 @@ const createFilterContainer = (categories) => {
       const selectedCategory = e.target.value
       getFilteredDrinks(selectedCategory)
     })
+    getFilteredDrinks(allCategories[0].strCategory)
   }
   removeShakeItUpBtn()
 }
@@ -139,7 +137,7 @@ const renderMultipleDrinks = (objectOfDrinks) => {
   const arrayOfDrinks = objectOfDrinks.drinks
   arrayOfDrinks.forEach(drink => {
     const { strDrink, strDrinkThumb, idDrink } = drink
-    let card = document.createElement('div')
+    const card = document.createElement('div')
     card.className = 'card'
     card.innerHTML = `
       <img src="${strDrinkThumb}"
@@ -219,6 +217,6 @@ const createFeelingAdventurousContainer = (randomDrink) => {
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 feelingAdventurousText.addEventListener('click', getRandomCocktail)
-sshLogo.addEventListener('click', getDropDownItems)
+document.getElementById('logo').addEventListener('click', getDropDownItems)
 
 getDropDownItems()
