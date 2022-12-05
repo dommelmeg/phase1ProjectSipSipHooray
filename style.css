@@ -23,6 +23,7 @@ body {
 
 #sshHeader #logo {
   justify-content: left;
+  cursor: pointer;
 }
 
 #sshHeader .headerBtn {
