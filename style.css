@@ -107,6 +107,18 @@ h3 {
   cursor: pointer;
 }
 
+.overItBtn {
+  border-color: black;
+  background-color: white;
+  height: 40px;
+  width: 140px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 17px;
+  cursor: pointer;
+}
+
 .multiCardHolder {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
