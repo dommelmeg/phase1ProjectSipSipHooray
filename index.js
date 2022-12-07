@@ -195,8 +195,7 @@ const renderDrink = (drinkObject) => {
 
   const drinkArray = drinkObject.drinks
   console.log(drinkArray)
-  const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink, strInstructions
-  } = drinkArray[0]
+  const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink, strInstructions, strIngredient1, strIngredient2 } = drinkArray[0]
   let card = document.createElement('div')
   card.className = 'indivualCard'
   card.innerHTML = `
@@ -207,6 +206,10 @@ const renderDrink = (drinkObject) => {
     />
     <h2>${strDrink}</h2>
     <h3>${strAlcoholic} | ${strGlass}
+    <ul>
+      <li>${strIngredient1}</li>
+      <li>${strIngredient2}</li>
+    </ul>
     <p>${strInstructions}</p>
     <button class=loveItBtn id=${idDrink}>Love it! ${unfilledHeart};
   `
