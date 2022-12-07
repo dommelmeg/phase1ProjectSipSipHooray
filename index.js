@@ -44,7 +44,7 @@ const getNonAlcoholicDrinks = () => {
     .then(drinks => createNonAlcoholicContainer(drinks))
 }
 
-const addMouseoverEvent = (card) => {
+const addCardMouseoverEvent = (card) => {
   card.addEventListener('mouseover', () => {
     card.id = 'dropshadow'
   })
@@ -76,13 +76,6 @@ const addLikeUnlikeBtn = (idDrink) => {
       individualBtn.innerHTML = `Love it! ${unfilledHeart}`
       individualBtn.className = 'loveItBtn'
     }
-  })
-}
-
-const learnMoreBtn = (idDrink) => {
-  const individualBtn = document.getElementById(`${idDrink}`)
-  individualBtn.addEventListener('click', () => {
-    getDetails(idDrink)
   })
 }
 
@@ -164,8 +157,19 @@ const renderMultipleDrinks = (objectOfDrinks) => {
     `
     cocktailCardDiv.appendChild(card)
 
-    addMouseoverEvent(card)
-    learnMoreBtn(idDrink)
+    const individualBtn = document.getElementById(`${idDrink}`)
+    individualBtn.addEventListener('click', () => {
+      getDetails(idDrink)
+    })
+    
+    individualBtn.addEventListener('mouseover', () => {
+      individualBtn.style.backgroundColor = '#ececec';
+    })
+    individualBtn.addEventListener('mouseout', () => {
+      individualBtn.style.backgroundColor = 'white'
+    })
+    
+    addCardMouseoverEvent(card)
   })
   removeShakeItUpBtn()
 }
@@ -215,7 +219,7 @@ const renderDrink = (drinkObject) => {
   `
   cocktailCardDiv.appendChild(card)
 
-  addMouseoverEvent(card)
+  addCardMouseoverEvent(card)
   addLikeUnlikeBtn(idDrink)
 }
 
