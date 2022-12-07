@@ -47,9 +47,16 @@ h1 {
   font-size: 48px;
 }
 
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  color: #808080;
+}
+
 #title p {
-  font-size: 18px;
-  text-align: center;
   justify-content: center;
 }
 
@@ -81,14 +88,19 @@ h1 {
   display: inline-grid;
 }
 
-h2 {
-  font-size: 20px;
+.indivualCard {
+  background-color: white;
+  text-align: left;
+  width: 388px;
+  height: auto;
+  top: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 24px;
+  display: inline-grid;
+  margin-bottom: 2rem;
 }
 
-h3 {
-  font-size: 16px;
-  color: #808080;
-}
 
 .drinkImage {
   justify-self: center;
@@ -113,6 +125,18 @@ h3 {
   background-color: white;
   height: 40px;
   width: 140px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 17px;
+  cursor: pointer;
+}
+
+.learnMoreBtn {
+  border-color: black;
+  background-color: white;
+  height: 40px;
+  width: 180px;
   border-radius: 5px;
   font-size: 18px;
   text-align: center;

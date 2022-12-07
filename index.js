@@ -13,6 +13,19 @@ const getDropDownItems = () => {
     .then((category) => createFilterContainer(category))
 }
 
+const getFilteredDrinks = (category) => {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
+    .then((res) => res.json())
+    .then((drinks) => renderMultipleDrinks(drinks))
+    //need to add a funct here that identifies drinkId then => to getDetails()
+}
+
+const getDetails = (drinkId) => {
+  fetch(`https:/www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
+    .then(res => res.json())
+    .then((drink) => renderDrink(drink))
+}
+
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then((res) => res.json())
@@ -29,12 +42,6 @@ const getNonAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
     .then((res) => res.json())
     .then(drinks => createNonAlcoholicContainer(drinks))
-}
-
-const getFilteredDrinks = (category) => {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
-    .then((res) => res.json())
-    .then((drinks) => renderMultipleDrinks(drinks))
 }
 
 const addMouseoverEvent = (card) => {
@@ -69,6 +76,13 @@ const addLikeUnlikeBtn = (idDrink) => {
       individualBtn.innerHTML = `Love it! ${unfilledHeart}`
       individualBtn.className = 'loveItBtn'
     }
+  })
+}
+
+const learnMoreBtn = (idDrink) => {
+  const individualBtn = document.getElementById(`${idDrink}`)
+  individualBtn.addEventListener('click', () => {
+    getDetails(idDrink)
   })
 }
 
@@ -146,13 +160,12 @@ const renderMultipleDrinks = (objectOfDrinks) => {
         id='${strDrink} image'
       />
       <h2>${strDrink}</h2>
-      <br>
-      <button class=loveItBtn id=${idDrink}>Love it! ${unfilledHeart};
+      <button class=learnMoreBtn id=${idDrink}>Gimmie the Deets!
     `
     cocktailCardDiv.appendChild(card)
 
     addMouseoverEvent(card)
-    addLikeUnlikeBtn(idDrink)
+    learnMoreBtn(idDrink)
   })
   removeShakeItUpBtn()
 }
@@ -175,20 +188,17 @@ const createNonAlcoholicContainer = (listOfDrinks) => {
   renderMultipleDrinks(listOfDrinks)
 }
 
-const createFeelingAdventurousContainer = (randomDrink) => {
-  header.textContent = 'Feeling Adventurous?'
-  subHead.textContent = 'We\'ll randomly select a cocktail for you. And let\'s be honest, it will probably be your new favorite.'
-
+const renderDrink = (drinkObject) => {
   cocktailCardDiv.innerHTML = null
   cocktailCardDiv.className = 'cocktailCardDiv'
   removeDropdown()
-  
-  toggleTab('feeling adventurous')
-  
-  const randomDrinkArray = randomDrink.drinks
-  const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink } = randomDrinkArray[0]
+
+  const drinkArray = drinkObject.drinks
+  console.log(drinkArray)
+  const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink, strInstructions
+  } = drinkArray[0]
   let card = document.createElement('div')
-  card.className = 'card'
+  card.className = 'indivualCard'
   card.innerHTML = `
     <img src="${strDrinkThumb}"
       class='drinkImage'
@@ -197,13 +207,22 @@ const createFeelingAdventurousContainer = (randomDrink) => {
     />
     <h2>${strDrink}</h2>
     <h3>${strAlcoholic} | ${strGlass}
-    <br>
+    <p>${strInstructions}</p>
     <button class=loveItBtn id=${idDrink}>Love it! ${unfilledHeart};
   `
   cocktailCardDiv.appendChild(card)
 
   addMouseoverEvent(card)
   addLikeUnlikeBtn(idDrink)
+}
+
+const createFeelingAdventurousContainer = (randomDrink) => {
+  header.textContent = 'Feeling Adventurous?'
+  subHead.textContent = 'We\'ll randomly select a cocktail for you. And let\'s be honest, it will probably be your new favorite.'
+  
+  toggleTab('feeling adventurous')
+
+  renderDrink(randomDrink)
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
   if(btn.id !== 'shakeItUp') {
