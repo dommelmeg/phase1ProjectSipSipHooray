@@ -6,23 +6,30 @@ You can then select cocktails or mocktails in the top nav to display those 2 typ
 Finally, you can click 'Shake it up' in the top nav. That will randomly generate a drink. If you click the 'Shake it Up!' button it will randomly generate another drink.
 
 ## Installation
-Clone the repo in your terminal by clicking the green clone or download button at the top right and copyin the url
+Fork and clone the repo by clicking the green code button at the top right, copy the SSH URL.
+
+Type the following code into your terminal & replace 'URL' with the one you just copied.
 
 ```bash
-git clone URL
+git clone 'URL'
 ```
 
-replacing URL with the url you copied
+This will copy all the files from this repo down to your computer.
 
-This will copy all the files from this repo down to your computer
+## How to Open
+In your terminal, cd into the directory you just created, then type the following into your terminal to open the index.html file.
 
-In your terminal, cd into the directory you just created
+WSL Ubuntu
 
 ```bash
-npm install
+explorer.exe index.html
 ```
 
-to install all dependencies
+Mac OS
+
+```bash
+open index.html
+```
 
 ## Acknowledgements
 
