@@ -8,7 +8,8 @@ Finally, you can click 'Shake it up' in the top nav. That will randomly generate
 ## Installation
 Clone the repo in your terminal by clicking the green clone or download button at the top right and copyin the url
 
-```git clone URL
+```bash
+git clone URL
 ```
 
 replacing URL with the url you copied
@@ -17,7 +18,8 @@ This will copy all the files from this repo down to your computer
 
 In your terminal, cd into the directory you just created
 
-```npm install
+```bash
+npm install
 ```
 
 to install all dependencies
