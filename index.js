@@ -17,7 +17,6 @@ const getFilteredDrinks = (category) => {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
     .then((res) => res.json())
     .then((drinks) => renderMultipleDrinks(drinks))
-    //need to add a funct here that identifies drinkId then => to getDetails()
 }
 
 const getDetails = (drinkId) => {
@@ -153,7 +152,7 @@ const renderMultipleDrinks = (objectOfDrinks) => {
         id='${strDrink} image'
       />
       <h2>${strDrink}</h2>
-      <button class=learnMoreBtn id=${idDrink}>Gimmie the Deets!
+      <button class=learnMoreBtn id=${idDrink}>Need the Deets!
     `
     cocktailCardDiv.appendChild(card)
 
