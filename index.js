@@ -11,36 +11,42 @@ const getDropDownItems = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
     .then((res) => res.json())
     .then((category) => createFilterContainer(category))
+    .catch(console.error)
 }
 
 const getFilteredDrinks = (category) => {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
     .then((res) => res.json())
     .then((drinks) => renderMultipleDrinks(drinks))
+    .catch(console.error)
 }
 
 const getDetails = (drinkId) => {
   fetch(`https:/www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
     .then(res => res.json())
     .then((drink) => renderDrink(drink))
+    .catch(console.error)
 }
 
 const getRandomCocktail = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then((res) => res.json())
     .then((drink) => createFeelingAdventurousContainer(drink))
+    .catch(console.error)
 }
 
 const getAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
     .then((res) => res.json())
     .then((drinks) => createAlcoholicContainer(drinks))
+    .catch(console.error)
 }
 
 const getNonAlcoholicDrinks = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
     .then((res) => res.json())
     .then(drinks => createNonAlcoholicContainer(drinks))
+    .catch(console.error)
 }
 
 const addCardMouseoverEvent = (card) => {
