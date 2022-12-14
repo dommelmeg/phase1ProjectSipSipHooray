@@ -10,7 +10,7 @@ const unfilledHeart = '&#x2661'
 const getDropDownItems = () => {
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
     .then((res) => res.json())
-    .then((category) => createFilterContainer(category))
+    .then((categories) => createFilterContainer(categories))
     .catch(console.error)
 }
 
@@ -115,7 +115,8 @@ const createFilterContainer = (categories) => {
   clearTabs()
 
   const dropdownHolder = document.getElementById('selector') ?? document.createElement('div')
-  if(dropdownHolder.id !== 'selector') {
+  
+  if (!dropdownHolder.id) {
     dropdownHolder.id = 'selector'
     cocktailCardDiv.parentNode.insertBefore(dropdownHolder, cocktailCardDiv)
   
@@ -163,13 +164,18 @@ const renderMultipleDrinks = (objectOfDrinks) => {
     cocktailCardDiv.appendChild(card)
 
     const individualBtn = document.getElementById(`${idDrink}`)
+
+    // Need the Deets!
     individualBtn.addEventListener('click', () => {
       getDetails(idDrink)
     })
     
+    // Changes background color of button
     individualBtn.addEventListener('mouseover', () => {
       individualBtn.style.backgroundColor = '#ececec';
     })
+
+    // Changes background of button back to white
     individualBtn.addEventListener('mouseout', () => {
       individualBtn.style.backgroundColor = 'white'
     })
@@ -203,7 +209,6 @@ const renderDrink = (drinkObject) => {
   removeDropdown()
 
   const drinkArray = drinkObject.drinks
-  console.log(drinkArray)
   const { strAlcoholic, strDrink, strGlass, strDrinkThumb, idDrink, strInstructions, strIngredient1, strIngredient2 } = drinkArray[0]
   let card = document.createElement('div')
   card.className = 'indivualCard'
@@ -237,17 +242,21 @@ const createFeelingAdventurousContainer = (randomDrink) => {
   renderDrink(randomDrink)
   
   const btn = document.getElementById('shakeItUp') ?? document.createElement('button')
-  if(btn.id !== 'shakeItUp') {
+  if (!btn.id) {
     btn.id = 'shakeItUp'
     btn.textContent = 'Shake It Up!'
     cocktailCardDiv.parentNode.insertBefore(btn, cocktailCardDiv)
   }
+
+  // Shake it up!
   btn.addEventListener('click', getRandomCocktail)
 }
 
 alcoholicText.addEventListener('click', getAlcoholicDrinks)
 nonAlcoholicText.addEventListener('click', getNonAlcoholicDrinks)
 feelingAdventurousText.addEventListener('click', getRandomCocktail)
+
+// Click logo to go "home"
 document.getElementById('logo').addEventListener('click', getDropDownItems)
 
 getDropDownItems()
