@@ -36,4 +36,4 @@ open index.html
 
 ## Acknowledgements
 
-[TheCocktailDB] (https://www.thecocktaildb.com/)
+[TheCocktailDB](https://www.thecocktaildb.com/)
